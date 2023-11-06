@@ -1,8 +1,29 @@
 # All imports
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+# All imports
 
 import streamlit as st
 from streamlit_extras.app_logo import add_logo
 from st_pages import Page, Section, add_page_title, show_pages, hide_pages
+
+
+show_pages(
+    [
+        Page("home.py","About", "😀"),
+        # Section(name = "Bulk Upload", icon="📚"),
+        Page("pages/bulk_upload_basic.py", "Bulk Upload - Basic", "📚"),
+        Page("pages/bulk_upload_advanced.py", "Bulk Upload - Advanced", "📚"),
+        # Section(name = "QA Basic", icon="❓"),
+        Page("pages/qa_basic.py", "Q&A - Basic", "❓"),
+        Page("pages/qa_advanced.py", "Q&A - Advanced", "❓"),
+        # Section(name = "Chatbot", icon="💬"),
+        # Page("pages/chatbot_without_memory.py", "Chatbot - Basic", "💬"),
+        # Page("pages/chatbot_with_memory.py", "Chatbot - Advanced", "💬")
+    ]
+)
 
 # Setting page config & header
 st.set_page_config(page_title = "Kristal Retriever", page_icon = "📖", layout = "wide", initial_sidebar_state = "expanded")
